@@ -31,6 +31,13 @@ const trustBadges = [
   { icon: '📞', label: '24/7 Support', sublabel: 'We Won\'t Answer' },
   { icon: '💰', label: 'Best Price Guarantee', sublabel: '*Compared to Other Scams' },
 ]
+
+const socialLinks = [
+  { name: 'Twitter', icon: 'twitter', url: 'https://twitter.com/intent/tweet?text=Check%20out%20TRAP.COM%20-%20Find%20places%20NOT%20to%20visit!' },
+  { name: 'Facebook', icon: 'facebook', url: 'https://www.facebook.com/sharer/sharer.php?u=https://trap.com' },
+  { name: 'Instagram', icon: 'instagram', url: '#' },
+  { name: 'TikTok', icon: 'tiktok', url: '#' },
+]
 </script>
 
 <template>
