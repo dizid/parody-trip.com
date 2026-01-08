@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 min-h-screen;
+  }
+
+  #app {
+    @apply min-h-screen flex flex-col;
+  }
+}
+
+@layer components {
+  /* Primary buttons - Trip.com pink style */
+  .btn-primary {
+    @apply bg-trap-pink-500 text-white px-6 py-3 rounded-lg font-semibold
+           hover:bg-trap-pink-600 active:bg-trap-pink-700
+           transition-all duration-200 shadow-md hover:shadow-lg
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Secondary buttons - Trip.com blue style */
+  .btn-secondary {
+    @apply bg-trap-blue-500 text-white px-6 py-3 rounded-lg font-semibold
+           hover:bg-trap-blue-600 active:bg-trap-blue-700
+           transition-all duration-200;
+  }
+
+  /* Ghost buttons */
+  .btn-ghost {
+    @apply bg-transparent text-trap-blue-500 px-4 py-2 rounded-lg font-medium
+           hover:bg-trap-blue-50 transition-colors;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-xl shadow-md hover:shadow-xl
+           transition-shadow duration-300 overflow-hidden;
+  }
+
+  .card-hoverable {
+    @apply card cursor-pointer hover:-translate-y-1 transition-all duration-300;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full
+           text-xs font-bold uppercase tracking-wide;
+  }
+
+  .badge-danger {
+    @apply bg-red-100 text-red-800 border border-red-200;
+  }
+
+  .badge-warning {
+    @apply bg-orange-100 text-orange-800 border border-orange-200;
+  }
+
+  .badge-certified {
+    @apply bg-trap-pink-100 text-trap-pink-800 border border-trap-pink-200;
+  }
+
+  .badge-info {
+    @apply bg-trap-blue-100 text-trap-blue-800 border border-trap-blue-200;
+  }
+
+  /* Trap rating (hazard symbols) */
+  .trap-rating {
+    @apply flex items-center gap-0.5;
+  }
+
+  .hazard-icon {
+    @apply text-orange-500;
+  }
+
+  .hazard-icon-empty {
+    @apply text-gray-300;
+  }
+
+  /* Search box styles */
+  .search-box {
+    @apply bg-white rounded-2xl shadow-2xl p-6 border border-gray-100;
+  }
+
+  .search-tab {
+    @apply px-6 py-3 font-medium text-gray-600 border-b-2 border-transparent
+           hover:text-trap-blue-500 transition-colors cursor-pointer;
+  }
+
+  .search-tab-active {
+    @apply text-trap-blue-500 border-trap-blue-500;
+  }
+
+  .search-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg
+           focus:ring-2 focus:ring-trap-blue-500 focus:border-trap-blue-500
+           transition-all placeholder-gray-400;
+  }
+
+  /* Price display */
+  .price-original {
+    @apply text-gray-400 line-through text-sm;
+  }
+
+  .price-current {
+    @apply text-2xl font-bold text-trap-pink-500;
+  }
+
+  .price-unit {
+    @apply text-gray-500 text-sm;
+  }
+
+  /* Fee reveal animation */
+  .fee-item {
+    @apply flex justify-between items-center py-2 px-4 bg-gray-50 rounded-lg
+           border-l-4 border-trap-pink-500;
+  }
+
+  .fee-item-enter {
+    @apply animate-slide-in-right;
+  }
+
+  /* Urgency indicator */
+  .urgency-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full
+           bg-red-50 text-red-600 text-sm font-medium animate-pulse-slow;
+  }
+
+  /* Trust badges (parody) */
+  .trust-badge {
+    @apply flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-100;
+  }
+
+  /* Header nav */
+  .nav-link {
+    @apply text-gray-700 hover:text-trap-blue-500 font-medium
+           transition-colors px-3 py-2 rounded-lg hover:bg-gray-100;
+  }
+
+  .nav-link-active {
+    @apply text-trap-blue-500 bg-trap-blue-50;
+  }
+
+  /* Destination card */
+  .destination-card {
+    @apply card-hoverable relative;
+  }
+
+  .destination-card-image {
+    @apply w-full h-48 object-cover;
+  }
+
+  .destination-card-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 to-transparent
+           opacity-0 group-hover:opacity-100 transition-opacity;
+  }
+
+  /* Hotel card */
+  .hotel-card {
+    @apply card flex flex-col md:flex-row gap-4 p-4;
+  }
+
+  .hotel-card-image {
+    @apply w-full md:w-64 h-48 object-cover rounded-lg;
+  }
+
+  /* Review card */
+  .review-card {
+    @apply bg-white p-4 rounded-lg border border-gray-100;
+  }
+
+  .review-stars {
+    @apply flex gap-0.5 text-yellow-400;
+  }
+
+  /* Ticker animation for urgency messages */
+  .ticker-wrap {
+    @apply overflow-hidden bg-trap-pink-500 text-white py-2;
+  }
+
+  .ticker {
+    @apply animate-ticker whitespace-nowrap;
+  }
+
+  /* Parody banner */
+  .parody-banner {
+    @apply bg-gray-900 text-white text-center py-2 text-sm;
+  }
+
+  /* Loading spinner */
+  .spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-4 border-gray-300
+           border-t-trap-blue-500;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400;
+}
+
+/* Gradient text for logo */
+.gradient-text {
+  @apply bg-gradient-to-r from-trap-blue-500 to-trap-pink-500
+         bg-clip-text text-transparent;
+}

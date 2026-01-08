@@ -1,0 +1,263 @@
+import type { Hotel, Amenity, Review, RoomType } from '../types'
+
+const commonAmenities: Amenity[] = [
+  { id: 'wifi', name: 'WiFi', icon: '📶', available: true, caveat: 'Available in lobby (when the router isn\'t stolen)' },
+  { id: 'pool', name: 'Pool', icon: '🏊', available: true, caveat: 'Filled seasonally (with hopes and dreams)' },
+  { id: 'breakfast', name: 'Breakfast', icon: '🍳', available: true, caveat: 'Continental (one continent: Antarctica)' },
+  { id: 'gym', name: 'Gym', icon: '💪', available: true, caveat: 'Equipment from 1987, still works (allegedly)' },
+  { id: 'spa', name: 'Spa', icon: '💆', available: false, caveat: 'A room with a bucket' },
+  { id: 'parking', name: 'Parking', icon: '🚗', available: true, caveat: 'Somewhere nearby. Probably.' },
+  { id: 'pets', name: 'Pet Friendly', icon: '🐕', available: true, caveat: 'We\'ve seen pets here. Can\'t stop them.' },
+  { id: 'ac', name: 'Air Conditioning', icon: '❄️', available: true, caveat: 'Makes noise. May produce cold air.' },
+  { id: 'tv', name: 'TV', icon: '📺', available: true, caveat: '47 channels of nothing to watch' },
+  { id: 'minibar', name: 'Minibar', icon: '🍫', available: true, caveat: '$15 for a Snickers. Yes, really.' },
+]
+
+const sampleReviews: Review[] = [
+  {
+    id: 'r1',
+    author: 'Definitely_Real_Person_123',
+    authorTitle: 'Verified Survivor',
+    rating: 5,
+    title: 'Exceeded my very low expectations!',
+    body: 'The bedbugs were friendly and the ceiling leak created nice white noise. Would definitely stay again for the character-building experience.',
+    date: '2024-01-15',
+    helpful: 47,
+    tripType: 'Business (Somehow)',
+  },
+  {
+    id: 'r2',
+    author: 'TravelEnthusiast2000',
+    authorTitle: 'Verified Masochist',
+    rating: 5,
+    title: 'Just like the photos! (The 2015 ones)',
+    body: 'The "ocean view" was technically accurate if you count the painting of the ocean in the lobby. The staff\'s indifference was almost impressive.',
+    date: '2024-02-20',
+    helpful: 89,
+    tripType: 'Family Disaster',
+  },
+  {
+    id: 'r3',
+    author: 'BudgetTraveler47',
+    authorTitle: 'Verified Regret',
+    rating: 5,
+    title: 'You get what you pay for (nothing)',
+    body: 'Found a previous guest\'s toothbrush. We\'re pen pals now. The breakfast buffet was a crime scene but the coffee was warm-ish.',
+    date: '2024-03-10',
+    helpful: 234,
+    tripType: 'Solo (Now I know why)',
+  },
+  {
+    id: 'r4',
+    author: 'NotABot_Promise',
+    authorTitle: 'Definitely Human',
+    rating: 5,
+    title: 'I am real person who stayed here',
+    body: 'This hotel has walls and a roof. The bed was horizontal. Water came out of the faucet sometimes. What more could you want? HIGHLY RECOMMEND.',
+    date: '2024-04-01',
+    helpful: 1,
+    tripType: 'Mandatory Fun',
+  },
+  {
+    id: 'r5',
+    author: 'HonestyIsMyPolicy',
+    authorTitle: 'Verified Cynic',
+    rating: 5,
+    title: 'The honesty is refreshing',
+    body: 'They said the WiFi was bad and it was. They said the pool was small and it was. Finally, a hotel that delivers on its promises of mediocrity.',
+    date: '2024-05-22',
+    helpful: 567,
+    tripType: 'Couples Retreat (Now Divorced)',
+  },
+]
+
+const standardRoomTypes: RoomType[] = [
+  {
+    id: 'closet',
+    name: 'Cozy Closet',
+    description: 'Our most intimate room. Perfect for those who love tight spaces and existential dread.',
+    basePrice: 49,
+    maxGuests: 1,
+    beds: '1 Twin (we think)',
+    size: '8 sq ft of pure comfort',
+    amenities: ['WiFi (sometimes)', 'Window (decorative)'],
+    images: [],
+    available: true,
+  },
+  {
+    id: 'standard',
+    name: 'Standard Disappointment',
+    description: 'Our most popular room. Meets the bare minimum of legal requirements for human habitation.',
+    basePrice: 89,
+    maxGuests: 2,
+    beds: '1 Queen (allegedly)',
+    size: '150 sq ft',
+    amenities: ['WiFi', 'TV', 'Regret'],
+    images: [],
+    available: true,
+  },
+  {
+    id: 'deluxe',
+    name: 'Deluxe Delusion',
+    description: 'Slightly larger than Standard. The "deluxe" is mostly aspirational.',
+    basePrice: 149,
+    maxGuests: 3,
+    beds: '1 King or 2 Queens (dealer\'s choice)',
+    size: '200 sq ft of hope',
+    amenities: ['WiFi', 'TV', 'Minibar', 'Bathrobe (thin)'],
+    images: [],
+    available: true,
+  },
+  {
+    id: 'suite',
+    name: 'Suite-ish',
+    description: 'Has a couch. We call that a suite. Don\'t question it.',
+    basePrice: 249,
+    maxGuests: 4,
+    beds: '1 King + Sofa Bed (lumpy)',
+    size: '300 sq ft',
+    amenities: ['WiFi', 'TV', 'Minibar', 'Bathrobe', 'Separate toilet (luxury)'],
+    images: [],
+    available: false,
+  },
+]
+
+export const hotels: Hotel[] = [
+  {
+    id: 'cozy-hostel-paris',
+    destinationId: 'paris',
+    name: 'The "Cozy" Hostel',
+    tagline: 'Cozy means 18 people in a room',
+    description: 'Your belongings will go on an adventure without you. Bathroom ratio: 1 per 47 guests. The word "cozy" has never worked harder.',
+    address: 'Somewhere in the 18th, Paris, France',
+    starRating: 1,
+    images: ['https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80'],
+    basePrice: 12,
+    amenities: commonAmenities.slice(0, 3),
+    badges: [
+      { id: 'budget', name: 'Budget Nightmare', icon: '💸', color: 'warning' },
+      { id: 'social', name: 'Forced Socialization', icon: '👥', color: 'info' },
+    ],
+    reviews: sampleReviews.slice(0, 3),
+    roomTypes: [standardRoomTypes[0]!],
+    viewersCount: 23,
+    lastBooked: '3 years ago',
+  },
+  {
+    id: 'airbnb-lies-venice',
+    destinationId: 'venice',
+    name: 'AirBnB That Looks Nothing Like Photos',
+    tagline: 'Photos taken in 2015. With a wide-angle lens. By a liar.',
+    description: 'The "pool" is a bucket. The "garden" is a plant. The "host" is missing. Good luck!',
+    address: 'An alley you can\'t find, Venice, Italy',
+    starRating: 2,
+    images: ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80'],
+    basePrice: 89,
+    amenities: commonAmenities.slice(0, 5),
+    badges: [
+      { id: 'photoshop', name: 'Photoshop Expert', icon: '🖼️', color: 'danger' },
+      { id: 'missing', name: 'Host MIA', icon: '👻', color: 'warning' },
+    ],
+    reviews: sampleReviews.slice(1, 4),
+    roomTypes: standardRoomTypes.slice(0, 2),
+    viewersCount: 8,
+    lastBooked: '2 weeks ago',
+  },
+  {
+    id: 'resort-fee-hotel',
+    destinationId: 'times-square',
+    name: 'Hotel & Resort Fee',
+    tagline: 'The resort fee is for the resort. The resort is a vending machine.',
+    description: '$79/night (+ $89 resort fee + $45 amenity fee + $25 existing fee). The "resort" amenities include: a sad palm tree and dreams.',
+    address: '123 Tourist Trap Ave, New York, NY',
+    starRating: 3,
+    images: ['https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80'],
+    basePrice: 79,
+    amenities: commonAmenities,
+    badges: [
+      { id: 'fees', name: 'Fees Upon Fees', icon: '💰', color: 'danger' },
+      { id: 'resort', name: '"Resort" (Technically)', icon: '🌴', color: 'certified' },
+    ],
+    reviews: sampleReviews,
+    roomTypes: standardRoomTypes,
+    viewersCount: 47,
+    lastBooked: '5 minutes ago (allegedly)',
+  },
+  {
+    id: 'haunted-bnb',
+    destinationId: 'ex-hometown',
+    name: 'The Haunted Victorian B&B',
+    tagline: 'Is it haunted? The owner says no (suspiciously quickly)',
+    description: 'Free breakfast with the ghost of whoever definitely died here. Creaky floors at 3 AM are just "settling." The doll collection watches you sleep.',
+    address: '666 Suspicious Lane, Your Ex\'s Hometown',
+    starRating: 4,
+    images: ['https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=800&q=80'],
+    basePrice: 199,
+    amenities: [...commonAmenities.slice(0, 4), { id: 'ghost', name: 'Resident Ghost', icon: '👻', available: true, caveat: 'Friendly. Mostly.' }],
+    badges: [
+      { id: 'haunted', name: 'Probably Haunted', icon: '👻', color: 'danger' },
+      { id: 'dolls', name: 'Doll Collection', icon: '🎎', color: 'warning' },
+    ],
+    reviews: sampleReviews.slice(2, 5),
+    roomTypes: standardRoomTypes.slice(1, 3),
+    viewersCount: 3,
+    lastBooked: '1 week ago (they checked out early)',
+  },
+  {
+    id: 'highway-motel',
+    destinationId: 'gary-indiana',
+    name: 'Motel Adjacent to Highway',
+    tagline: 'Fall asleep to the soothing sounds of 18-wheelers',
+    description: 'Vibrating bed still works (nobody knows why). Ice machine broken since 1987. Free HBO (1987 programming).',
+    address: 'Exit 47, Highway to Nowhere, Gary, IN',
+    starRating: 1,
+    images: ['https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=800&q=80'],
+    basePrice: 39,
+    amenities: commonAmenities.slice(0, 4),
+    badges: [
+      { id: 'highway', name: 'Highway Adjacent', icon: '🛣️', color: 'warning' },
+      { id: 'vintage', name: 'Vintage (Old)', icon: '📺', color: 'info' },
+    ],
+    reviews: sampleReviews.slice(0, 2),
+    roomTypes: [standardRoomTypes[0]!, standardRoomTypes[1]!],
+    viewersCount: 0,
+    lastBooked: 'We don\'t remember',
+  },
+  {
+    id: 'nightclub-neighbor',
+    destinationId: 'hotel-nightclub',
+    name: 'The Vibrant Suites',
+    tagline: 'UNTZ UNTZ UNTZ until 4 AM',
+    description: 'The listing said "vibrant neighborhood." We delivered. Earplugs provided (they don\'t work). Bass massage included free.',
+    address: 'Above the club, Every City',
+    starRating: 2,
+    images: ['https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80'],
+    basePrice: 59,
+    amenities: [...commonAmenities.slice(0, 3), { id: 'earplugs', name: 'Earplugs', icon: '👂', available: true, caveat: 'Useless against 140db bass' }],
+    badges: [
+      { id: 'bass', name: 'Bass Included', icon: '🔊', color: 'danger' },
+      { id: 'sleep', name: 'Sleep Not Included', icon: '😴', color: 'warning' },
+    ],
+    reviews: sampleReviews.slice(3, 5),
+    roomTypes: standardRoomTypes.slice(0, 2),
+    viewersCount: 12,
+    lastBooked: '4 AM (they couldn\'t sleep)',
+  },
+]
+
+export function getHotelById(id: string): Hotel | undefined {
+  return hotels.find(h => h.id === id)
+}
+
+export function getHotelsByDestination(destinationId: string): Hotel[] {
+  return hotels.filter(h => h.destinationId === destinationId)
+}
+
+export function searchHotels(query: string): Hotel[] {
+  const q = query.toLowerCase()
+  return hotels.filter(h =>
+    h.name.toLowerCase().includes(q) ||
+    h.tagline.toLowerCase().includes(q) ||
+    h.description.toLowerCase().includes(q)
+  )
+}
