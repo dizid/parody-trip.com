@@ -6,6 +6,7 @@ import { getHotelsByDestination } from '../data/hotels'
 import TrapRating from '../components/destinations/TrapRating.vue'
 import TrapBadge from '../components/destinations/TrapBadge.vue'
 import UrgencyIndicator from '../components/destinations/UrgencyIndicator.vue'
+import ShareButtons from '../components/shared/ShareButtons.vue'
 
 const route = useRoute()
 
@@ -210,6 +211,16 @@ function formatNumber(num: number): string {
               This destination has a {{ destination.trapRating }}/5 trap rating.
               Proceed with extreme caution and low expectations.
             </p>
+          </div>
+
+          <!-- Share -->
+          <div class="bg-white rounded-xl p-6 shadow-sm">
+            <h3 class="font-semibold text-gray-900 mb-4">Warn Your Friends</h3>
+            <ShareButtons
+              :title="`${destination.name} - TRAP.COM`"
+              :text="`Check out ${destination.name} on TRAP.COM - a place you should probably avoid! ${destination.tagline}`"
+              variant="compact"
+            />
           </div>
         </aside>
       </div>

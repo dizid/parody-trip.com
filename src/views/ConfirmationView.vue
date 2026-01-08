@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import ShareButtons from '../components/shared/ShareButtons.vue'
 
 const route = useRoute()
 
@@ -99,6 +100,18 @@ const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)]
         <RouterLink to="/" class="btn-primary">
           🏠 Book Another Regret
         </RouterLink>
+      </div>
+
+      <!-- Share your regret -->
+      <div class="bg-white rounded-xl p-6 shadow-lg mt-8">
+        <h3 class="font-semibold text-gray-900 mb-2">Share Your Regret</h3>
+        <p class="text-sm text-gray-500 mb-4">
+          Misery loves company. Let your friends know about your upcoming "adventure"!
+        </p>
+        <ShareButtons
+          :title="`I just booked a trip on TRAP.COM! Code: ${confirmationCode}`"
+          :text="`I just booked my regret on TRAP.COM! Confirmation code: ${confirmationCode}. Where dreams go to die, affordably.`"
+        />
       </div>
 
       <!-- Disclaimer -->

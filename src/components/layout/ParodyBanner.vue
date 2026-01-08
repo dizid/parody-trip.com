@@ -13,9 +13,9 @@ function closeBanner() {
     v-if="isVisible"
     class="bg-gray-900 text-white text-center py-2 px-4 text-sm relative"
   >
-    <span class="inline-flex items-center gap-2">
+    <span class="inline-flex items-center gap-2 flex-wrap justify-center">
       <span class="text-yellow-400">⚠️</span>
-      <span>This is a <strong>parody</strong>. Not real. Please laugh responsibly.</span>
+      <span>This is a <strong>parody</strong> by <a href="https://dizid.com" target="_blank" rel="noopener" class="text-trap-pink-400 hover:text-trap-pink-300 underline">dizid.com</a>. Not real. Please laugh responsibly.</span>
       <span class="text-yellow-400">⚠️</span>
     </span>
     <button

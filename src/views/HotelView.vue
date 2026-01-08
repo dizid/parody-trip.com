@@ -5,6 +5,7 @@ import { getHotelById } from '../data/hotels'
 import TrapRating from '../components/destinations/TrapRating.vue'
 import TrapBadge from '../components/destinations/TrapBadge.vue'
 import UrgencyIndicator from '../components/destinations/UrgencyIndicator.vue'
+import ShareButtons from '../components/shared/ShareButtons.vue'
 
 const route = useRoute()
 
@@ -183,6 +184,16 @@ const selectedRoom = ref(0)
             <p class="text-xs text-gray-400 text-center">
               * Fees will be revealed gradually at checkout for maximum surprise
             </p>
+
+            <!-- Share -->
+            <div class="mt-6 pt-6 border-t border-gray-100">
+              <p class="text-sm text-gray-500 mb-3 text-center">Share this nightmare:</p>
+              <ShareButtons
+                :title="`${hotel.name} - TRAP.COM`"
+                :text="`Found this 'gem' on TRAP.COM: ${hotel.name} - '${hotel.tagline}'`"
+                variant="compact"
+              />
+            </div>
           </div>
         </aside>
       </div>

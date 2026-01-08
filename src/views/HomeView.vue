@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import SearchBox from '../components/search/SearchBox.vue'
 import DestinationCard from '../components/destinations/DestinationCard.vue'
+import ShareButtons from '../components/shared/ShareButtons.vue'
 import { destinations } from '../data/destinations'
 
 // Featured destinations (first 8)
@@ -231,6 +232,24 @@ const categories = [
             <p class="text-4xl font-bold text-trap-pink-500">∞</p>
             <p class="text-gray-500">Hidden Fees</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Share the Misery -->
+    <section class="py-12 bg-gray-50 border-t">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">
+          Share the Misery
+        </h2>
+        <p class="text-gray-500 mb-6">
+          Know someone who needs a terrible vacation? Spread the word!
+        </p>
+        <div class="flex justify-center">
+          <ShareButtons
+            title="TRAP.COM - Find Places NOT to Visit"
+            text="Just discovered TRAP.COM - the anti-travel site that tells you where NOT to go! Where dreams go to die, affordably."
+          />
         </div>
       </div>
     </section>
